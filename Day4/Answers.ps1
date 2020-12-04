@@ -1,4 +1,6 @@
-﻿$list = get-content "C:\Users\user\Documents\adventofcode\day4\input.txt"| %{$_.split(' ')}
+$list = get-content "C:\Users\user\Documents\adventofcode\day4\input.txt"| %{$_.split(' ')}
+
+#####   PART 1    ####
 $Allpassports = @()
 $obj = New-Object -TypeName PSObject
 foreach($line in $list){
@@ -20,6 +22,7 @@ foreach($prop in $mandoprops){
 
 }
 $validports.count
+#####   PART 2    #####
 $datavalid =@()
 :passloop foreach($singlepassport in $validports){
 if($singlepassport.byr -lt 1920 -or $singlepassport.byr -gt 2002 -and $singlepassport.byr -match "\d\d\d\d"){continue passloop}
