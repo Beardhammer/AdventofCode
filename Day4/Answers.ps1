@@ -18,7 +18,7 @@ $mandoprops = "byr","iyr","eyr","hgt","hcl","ecl","pid"
 $validports = @()
 :passloop foreach ($pass in $allpassports){
 foreach($prop in $mandoprops){
-        if($prop -notin ($pass|gm).name){$pass;continue passloop}
+        if($prop -notin ($pass|gm).name){continue passloop}
     }$validports += $pass
 
 }
@@ -29,11 +29,11 @@ $datavalid =@()
 if($singlepassport.byr -lt 1920 -or $singlepassport.byr -gt 2002 -and $singlepassport.byr -match "\d\d\d\d"){continue passloop}
 if($singlepassport.iyr -lt 2010 -or $singlepassport.iyr -gt 2020 -and $singlepassport.iyr -match "\d\d\d\d"){continue passloop}
 if($singlepassport.eyr -lt 2020 -or $singlepassport.eyr -gt 2030 -and $singlepassport.eyr -match "\d\d\d\d"){continue passloop}
-if($singlepassport.hgt -like "*cm" -or $singlepassport.hgt -like "*in"){
-    if ($singlepassport.hgt -like "*cm"){
+if($singlepassport.hgt -match "cm|in"){
+    if ($singlepassport.hgt -match "cm"){
        $height = ($singlepassport.hgt -split "cm")[0]
          if ($height -lt 150 -or $height -gt 193){continue passloop}}
-    if ($singlepassport.hgt -like "*in"){
+    if ($singlepassport.hgt -match "in"){
         $height = ($singlepassport.hgt -split "in")[0]
     if ($height -lt 59 -or $height -gt 76){continue passloop}}
     }
