@@ -11,8 +11,9 @@ if ($line -eq ""){
         }
     else{$split = $line.split(':')
     $obj | Add-Member -MemberType NoteProperty -Name $split[0] -Value $split[1]}
-
 }
+#last passport needs to be added manually do to order of foreach loop
+$Allpassports += $obj
 $mandoprops = "byr","iyr","eyr","hgt","hcl","ecl","pid"
 $validports = @()
 :passloop foreach ($pass in $allpassports){
